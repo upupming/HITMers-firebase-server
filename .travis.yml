@@ -31,7 +31,8 @@ script:
 
 after_success:
   - npm run coveralls
-  - cd ../..
+  - cd ..
+  - npm install
   - firebase deploy --token $FIREBASE_TOKEN
 
 notifications:
