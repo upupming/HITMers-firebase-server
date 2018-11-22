@@ -1,0 +1,48 @@
+# .travis.yml
+language: node_js
+node_js:
+- 'stable'
+dist: trusty
+sudo: required
+
+cache:
+  directories:
+    - "node_modules"
+
+before_install:
+  - export TZ=Asia/Shanghai
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('data4upupming!') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -pdata4upupming!
+  - sudo service mysql restart
+
+install:
+  - cd functions/HITMers-node-server/
+  - npm install
+  - npm install -g knex
+  - npm install -g firebase-tools
+
+before_script:
+  - mysql -u root -pdata4upupming! -e 'create database hitmers_test;'
+  - knex migrate:latest --env test
+  - knex seed:run --env test
+
+script:
+  npm test
+
+after_success:
+  - npm run coveralls
+  - cd ../..
+  - firebase deploy --token $FIREBASE_TOKEN
+
+notifications:
+  email: false
+
+services:
+  - mysql
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-client
+      - mysql-server
