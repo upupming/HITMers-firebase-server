@@ -24,6 +24,7 @@
     "url": "git+https://github.com/upupming/HITMers-node-js-server.git"
   },
   "dependencies": {
+    "asyncawait": "^1.0.7",
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
     "chai": "^4.1.2",
