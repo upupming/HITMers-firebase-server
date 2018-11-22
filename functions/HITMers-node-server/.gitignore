@@ -1,0 +1,8 @@
+node_modules/
+.env
+seeds-production/
+coverage/
+admin.md
+package-lock.json
+.test
+ci.md
