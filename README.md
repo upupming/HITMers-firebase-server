@@ -7,3 +7,11 @@
 </center>
 
 HITMers server hosted with Firebase, migrated from [HITMers-node-js-server](https://github.com/upupming/HITMers-node-js-server).
+
+## Given up
+
+According to [Pricing](https://cloud.google.com/functions/pricing):
+
+> If your function makes an outbound network request, there are also additional data transfer fees. Cloud Functions includes a perpetual free tier to allow you to experiment with the platform at no charge. Note that even for free tier usage, we require a valid billing account.
+
+I don't have a credit card, so I will give up this project until I get a credit card some day. Now I'm trying to find other Firebase alternatives.
